@@ -1,5 +1,5 @@
 const net = require("net");
-const { stdin } = require("process");
+// const { stdin } = require("process");
 
 const connect = () => {
   const conn = net.createConnection({
@@ -15,6 +15,11 @@ const connect = () => {
 
   conn.on("data", (data) => {
     console.log("Server says:", data);
+  });
+
+  conn.on("close", () => {
+    console.log("Game Ended!");
+    process.exit();
   });
 
   return conn;

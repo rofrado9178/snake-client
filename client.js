@@ -10,10 +10,9 @@ const connect = () => {
   conn.on("connect", () => {
     console.log("Successfully connected to game server");
     conn.write("Name: RFD");
-  });
-
-  conn.on("data", (data) => {
-    console.log("Name: Fransiskus Aldo", data);
+    // setInterval(() => {
+    //   conn.write("Move: up");
+    // }, 500);
   });
 
   conn.on("data", (data) => {

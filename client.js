@@ -1,4 +1,5 @@
 const net = require("net");
+const { stdin } = require("process");
 
 const connect = () => {
   const conn = net.createConnection({
@@ -10,9 +11,6 @@ const connect = () => {
   conn.on("connect", () => {
     console.log("Successfully connected to game server");
     conn.write("Name: RFD");
-    // setInterval(() => {
-    //   conn.write("Move: up");
-    // }, 500);
   });
 
   conn.on("data", (data) => {
@@ -21,8 +19,5 @@ const connect = () => {
 
   return conn;
 };
-
-console.log("Connecting ...");
-connect();
 
 module.exports = { connect };

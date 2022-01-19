@@ -17,6 +17,9 @@ const handlerUserInput = (key) => {
   if (key === "d") {
     connection.write("Move: right");
   }
+  if (key === "p") {
+    connection.write("Say: Bonjour");
+  }
 };
 const setupInput = (conn) => {
   // connect();

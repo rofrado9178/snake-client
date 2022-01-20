@@ -1,36 +1,21 @@
-const { connect } = require("./client");
+const { UTF, UP, DOWN, LEFT, RIGHT, P, O } = require("./constant");
 let connection;
 
 const handlerUserInput = (key) => {
+  const keys = { w: UP, a: LEFT, s: DOWN, d: RIGHT, p: P, o: O };
   if (key === "\u0003") {
     process.exit();
   }
-  if (key === "w") {
-    connection.write("Move: up");
-  }
-  if (key === "a") {
-    connection.write("Move: left");
-  }
-  if (key === "s") {
-    connection.write("Move: down");
-  }
-  if (key === "d") {
-    connection.write("Move: right");
-  }
-  if (key === "p") {
-    connection.write("Say: Bonjour");
-  }
+  connection.write(keys[key]);
 };
 const setupInput = (conn) => {
-  // connect();
   connection = conn;
   const stdin = process.stdin;
   stdin.setRawMode(true);
-  stdin.setEncoding("utf8");
+  stdin.setEncoding(UTF);
   stdin.resume();
-  // connect.conn.on("connect", () => {
   stdin.on("data", handlerUserInput);
-  // });
+
   return stdin;
 };
 
